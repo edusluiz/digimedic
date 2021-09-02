@@ -2,4 +2,6 @@
 
 require:
     - play -> paginate head
+    - org.postgresql -> postgresql 9.4.1212:
+		force: true
 
