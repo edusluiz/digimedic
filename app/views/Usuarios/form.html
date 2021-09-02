@@ -1,0 +1,224 @@
+#{extends 'main.html' /}
+#{set title:'Cadastro de Pacientes' /}
+
+<!-- Menu lateral -->
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="@{Application.index}">DigiMedic</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">
+							${session.get("usuario.nome")}
+						</li>
+                        
+                        <li class="sidebar-item">
+                            <a href="@{Application.index}" class='sidebar-link'>
+                                <i class="bi bi-house-door-fill"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+
+                        <!-- If para ver o cargo e exibir menu de acordo com o cargo -->
+						#{if session.get("usuario.cargo").equals("A")}
+                        	<li class="sidebar-item active">
+                            	<a href="@{Usuarios.form}" class='sidebar-link'>
+                                	<i class="bi bi-person-plus-fill"></i>
+                                	<span>Cadastro Usuário</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        #{if session.get("usuario.cargo").equals("A")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Usuarios.listar}" class='sidebar-link'>
+                                	<i class="bi bi-person-lines-fill"></i>
+                                	<span>Listagem Usuário</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        #{if session.get("usuario.cargo").equals("R")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Usuarios.listar}" class='sidebar-link'>
+                                	<i class="bi bi-person-lines-fill"></i>
+                                	<span>Listagem</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        
+                        #{if session.get("usuario.cargo").equals("R")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Consultas.form}" class='sidebar-link'>
+                                	<i class="bi bi-calendar-check-fill"></i>
+                                	<span>Agendar Consulta</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        
+                        #{if session.get("usuario.cargo").equals("A")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Consultas.form}" class='sidebar-link'>
+                                	<i class="bi bi-calendar-check-fill"></i>
+                                	<span>Agendar Consulta</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        
+                        #{if session.get("usuario.cargo").equals("R")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Consultas.listar}" class='sidebar-link'>
+                                	<i class="bi bi-ui-checks"></i>
+                                	<span>Listar Consultas</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        
+                        #{if session.get("usuario.cargo").equals("A")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Consultas.listar}" class='sidebar-link'>
+                                	<i class="bi bi-ui-checks"></i>
+                                	<span>Listar Consultas</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        #{if session.get("usuario.cargo").equals("M")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Prontuarios.form}" class='sidebar-link'>
+                                	<i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                	<span>Cadastrar Prontuários</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        
+                        #{if session.get("usuario.cargo").equals("A")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Prontuarios.form}" class='sidebar-link'>
+                                	<i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                	<span>Cadastrar Prontuários</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        
+                        #{if session.get("usuario.cargo").equals("M")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Prontuarios.listar}" class='sidebar-link'>
+                                	<i class="bi bi-file-text-fill"></i>
+                                	<span>Listar Prontuários</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        
+                        #{if session.get("usuario.cargo").equals("A")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Prontuarios.listar}" class='sidebar-link'>
+                                	<i class="bi bi-file-text-fill"></i>
+                                	<span>Listar Prontuários</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                        #{if session.get("usuario.cargo").equals("P")}
+                        	<li class="sidebar-item">
+                            	<a href="@{Prontuarios.listar}" class='sidebar-link'>
+                                	<i class="bi bi-file-text-fill"></i>
+                                	<span>Listar Prontuários</span>
+                            	</a>
+                        	</li>
+                        #{/if}
+                            <a href="@{Login.sair}" class='btn btn-danger'>
+                                <span class="sair">Sair</span>
+                            </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+
+
+<!-- Main Cadastro -->
+
+<h1></h1>
+
+<!-- ALERTA ERRO OU SUCESSO -->
+
+	#{if flash.success}
+		<div class="alert alert-success">
+			<i class="bi bi-check-circle"></i> 
+			${flash.success}
+
+		</div>
+	#{/if}
+	
+	#{if flash.error}
+		<div class="alert alert-danger">
+			<i class="bi bi-file-excel"></i> 
+			${flash.error}
+
+		</div>
+	#{/if}
+
+<div class="card">
+	<div class="card-content">
+	<div class="card-body">
+	<form action="@{Usuarios.salvar}">
+
+		<input type="hidden" name="usuario.id" value="${usuario?.id}">
+	
+		<input class="form-check-input" type="radio" name="usuario.cargo" value="P" required #{if usuario?.cargo == "P"} checked #{/if}> Paciente |
+		<input class="form-check-input" type="radio" name="usuario.cargo" value="M" required #{if usuario?.cargo == "M"} checked #{/if}> Médico |
+		<input class="form-check-input" type="radio" name="usuario.cargo" value="R" required #{if usuario?.cargo == "R"} checked #{/if}> Recepcionista |
+		<input class="form-check-input" type="radio" name="usuario.cargo" value="A" required #{if usuario?.cargo == "A"} checked #{/if}> Admin <br><br>
+	
+		<!-- Nome -->
+		<span class="badge bg-danger">#{error 'usuario.nome' /}</span>
+		<div class="form-floating mb-3">
+			<input class="form-control" type="text" name="usuario.nome" value="${usuario?.nome}"> 
+			<label for="floatingInput">Nome Completo</label>
+		</div>
+	
+		<!-- CPF -->
+		<span class="badge bg-danger">#{error 'usuario.cpf' /}</span>
+		<div class="form-floating mb-3">
+			<input class="form-control" type="text" id="cpf" name="usuario.cpf" value="${usuario?.cpf}"> 
+			<label for="floatingInput">CPF</label>
+		</div>
+	
+		<!-- REGISTRO -->
+		<span class="badge bg-danger">#{error 'usuario.registro' /}</span>
+		<div class="form-floating mb-3">
+			<input class="form-control" type="text" name="usuario.registro" value="${usuario?.registro}"> 
+			<label for="floatingInput">N° de Registro</label>
+		</div>
+	
+		<!-- BAIRRO -->
+		<span class="badge bg-danger">#{error 'usuario.bairro' /}</span>
+		<div class="form-floating mb-3">
+			<input class="form-control" type="text" name="usuario.bairro" value="${usuario?.bairro}">
+			<label for="floatingInput">Bairro/Zona</label>
+		</div>
+		
+		<!-- SENHA -->
+		<span class="badge bg-danger">#{error 'usuario.senha' /}</span>
+		<div class="form-floating mb-3">
+			<input class="form-control" type="password" name="senha" value="">
+			<label for="floatingInput">Senha</label>
+		</div>
+		
+		<!-- CONFIRMAR SENHA SENHA -->
+		<span class="badge bg-danger">#{error 'usuario.senha' /}</span>
+		<div class="form-floating mb-3">
+			<input class="form-control" type="password" name="usuario.confirmacaoSenha" value=""> <br>
+			<label for="floatingInput">Confirmar Senha</label>
+	
+		<input class="btn btn-primary" type="submit" value="Enviar">
+		<a class="btn btn-warning" href="@{Usuarios.form}">Limpar</a><br>
+	
+	</form>
+	</div>
+	</div>
+</div>

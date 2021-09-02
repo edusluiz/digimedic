@@ -1,0 +1,68 @@
+#{set title:'Sistema sobre Saúde Pública - Home' /}
+#{extends 'main.html' /}
+
+<style>
+	
+	.logo{
+		margin-bottom: 125px;
+		font-size: 35px;
+		font-weight: 700;
+		
+	}
+	
+	#auth #auth-left {
+    padding: 80px 30%;
+    
+	}
+	
+</style>
+
+
+
+
+<body>
+    <div id="auth">
+
+        <div>
+            <div>
+                <div id="auth-left">
+                		
+                        <div class="logo">
+                            <a href="@{Application.index}">DigiMedic</a>
+                        </div>
+                           
+                    <h1 class="auth-title">Login</h1>
+                    <p class="auth-subtitle mb-5">Bem-vind@ de volta, faça seu login!</p>
+
+                	<!-- ALERTA ERRO OU SUCESSO -->
+					#{if flash.error}
+						<div class="alert alert-danger">
+							<i class="bi bi-file-excel"></i> 
+								${flash.error}
+
+						</div>
+					#{/if}
+					
+					
+                    <form action="@{Login.logar}" method="POST">
+                    	
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input class="form-control form-control-xl" placeholder="CPF" name="cpf">
+                            <div class="form-control-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input type="password" class="form-control form-control-xl" placeholder="Senha" name="senha">
+                            <div class="form-control-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Entrar</button>
+                    </form>
+                </div>
+        </div>
+
+    </div>
+</body>

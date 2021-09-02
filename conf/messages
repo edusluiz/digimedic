@@ -1,0 +1,8 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+
+validation.required=Este campo é obrigatório
+senhaDiferente=As senhas precisam ser iguais
+validation.minSize=Digite um CPF válido
+validation.maxSize=Digite um CPF válido
